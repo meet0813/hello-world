@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Shop</title>
+			<script>
+				function FindIfIdExists(obj, id)
+				{
+					var TheNodeList = obj.getElementByTagName('div');
+					for (var NodeNumber = 0; NodeNumber< TheNodeList.length;NodeNumber++) {
+						if (TheNodeList [NodeNumber].id === id) {
+							return NodeNumber + 1;
+						}
+					}
+					return 0;
+				}
+				function ContinueShopping()
+				{
+					document.getElementById('products').style.visibility='visible';
+					document.getElementById('The Cart').style.visibility='hidden';
+				}
+				function AddToTheCart(itemToAdd)
+				{
+					var TheCartItemImages = document.getElementById('ThecartItemImages');
+					var FoundNodeCount = FindIfIdExists(TheCartItemImages."TheCartItem"+itemToAdd);
+					if(FoundNodeCount === 0) {
+						var CartItemToAdd = document.getElementById(itemToAdd).cloneNode(true);
+						TheCartItemToAdd.id = "TheCartItem"+itemToAdd;
+						TheCartItemToAdd.childNodes[1].height=100;
+						TheCartItemImages.appenChild(TheCartItemToAdd);
+					}
+					document.getElementById('products').style.visibility='hidden';
+					document.getElementById('The Cart').style.visibility='visible';
+
+				}
+			</script>
+	</head>
+		<body>
+			<div id="products" style="visibility: visible;">
+					<div id="001" data-price='$20' style="position: 'absolute' left:20px; top:15px"> 
+					<img src="tee.jpg" height="300">
+					</div>
+					<div style="position: absolute; left: 20px; top: 310px">
+					<img src="cart.jpg" height="43" onclick='AddToTheCart("001")'>
+					</div>
+					<div style="position: absolute; align: right; font-size: 18pt; left: 250px; top: 310px">
+						$20
+					</div>
+			</div>
+			<div id="The Cart" style="visibility: hidden"> 
+			<div style="position: absolute; align: right; font-size: 35pt; left: 50px; top: 5px">
+				Cart
+			</div>
+			<div style="position: absolute; left: 475px; top: 50px">
+				<img src="continue.jpg" height = "43" onclick = "ContinueShopping()">
+			</div>
+			<div id="ThecartItemImages" style="position: absolute; left: 75px; top: 150px"></div>
+			<div id="ThecartItemRemove" style="position: absolute; left: 200px; top: 150px"></div>
+			<div id="ThecartItemPrice" style="position: absolute; left: 250px; top: 150px"></div>
+			<div id="ThecartItemQuantity" style="position: absolute; left: 300px; top: 150px"></div>
+			<div id="ThecartItemTotal" style="position: absolute; left: 350px; top: 150px"></div>
+			<div id="ThecartTotal" style="position: absolute; left: 350px; top: 125px"> Order Total </div>
+
+			<div id="Thank you for shopping" style="visibility: hidden; font-size: 144pt"> Thank you for shopping
+			</div>
+				
+			</div>
+		</body>
+</html>
